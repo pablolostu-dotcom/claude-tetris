@@ -25,6 +25,7 @@ Implementación del clásico **Tetris** en JavaScript vanilla, usando HTML5 Canv
   - [Tecnologías](#tecnologías)
   - [Estructura del proyecto](#estructura-del-proyecto)
   - [Personalización](#personalización)
+  - [Automatización con Claude Code](#automatización-con-claude-code)
   - [Licencia](#licencia)
 
 ---
@@ -156,6 +157,10 @@ Cuando una pieza recién generada ya colisiona al aparecer (`spawn`), se dispara
 
 ```
 03-tetris/
+├── .github/
+│   └── workflows/
+│       ├── claude.yml              # Responde a menciones @claude
+│       └── claude-code-review.yml  # Revisa cada PR automáticamente
 ├── index.html      # Estructura del DOM y canvas
 ├── style.css       # Estilos del juego (dark theme)
 ├── game.js         # Toda la lógica del Tetris (~300 líneas)
@@ -178,6 +183,30 @@ Algunos parámetros fáciles de tunear en `game.js`:
 | `dropInterval` | Velocidad inicial de caída en ms         | `1000`                |
 
 > Si cambias `COLS`, `ROWS` o `BLOCK`, recuerda ajustar también `width` y `height` del `<canvas id="board">` en `index.html` para que coincida (`COLS × BLOCK` × `ROWS × BLOCK`).
+
+---
+
+## Automatización con Claude Code
+
+El repositorio tiene dos GitHub Actions que usan [claude-code-action](https://github.com/anthropics/claude-code-action):
+
+| Workflow                  | Cuándo se dispara                                        | Qué hace                                                        |
+| ------------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| `claude.yml`              | Se menciona `@claude` en un issue, comentario o review    | Claude lee el pedido y responde o implementa el cambio           |
+| `claude-code-review.yml`  | Se abre, actualiza o reabre un pull request               | Claude deja un code review sin que nadie tenga que pedirlo       |
+
+Ambos se autentican con el secret `ANTHROPIC_API_KEY` del repositorio. Para configurarlo:
+
+```bash
+gh secret set ANTHROPIC_API_KEY
+```
+
+Como el proyecto no tiene `package.json` ni suite de tests, la única verificación
+que `claude.yml` habilita es el chequeo de sintaxis: `node --check game.js`.
+
+> Al abrir un PR que **modifica** uno de estos workflows, la action se saltea a sí
+> misma con un aviso de _workflow validation_: solo ejecuta la versión que ya está
+> en la rama por defecto. Es esperado y se resuelve al mergear.
 
 ---
 
