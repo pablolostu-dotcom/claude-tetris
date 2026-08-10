@@ -1,0 +1,80 @@
+[
+  {
+    "name": "type:bug",
+    "color": "d73a4a",
+    "description": "Algo no funciona como deberia"
+  },
+  {
+    "name": "type:enhancement",
+    "color": "a2eeef",
+    "description": "Funcionalidad nueva o mejora de una existente"
+  },
+  {
+    "name": "type:docs",
+    "color": "0075ca",
+    "description": "README, CLAUDE.md o comentarios del codigo"
+  },
+  {
+    "name": "type:question",
+    "color": "d876e3",
+    "description": "Duda o pedido de aclaracion, no un reporte"
+  },
+  {
+    "name": "type:chore",
+    "color": "cfd3d7",
+    "description": "Mantenimiento sin cambio de comportamiento"
+  },
+
+  {
+    "name": "area:gameplay",
+    "color": "1d76db",
+    "description": "collide, tryRotate, rotateCW, randomPiece, spawn, merge, lockPiece, ghostY"
+  },
+  {
+    "name": "area:rendering",
+    "color": "5319e7",
+    "description": "draw, drawGrid, drawBlock, drawNext y tamano de los canvas"
+  },
+  {
+    "name": "area:scoring",
+    "color": "0e8a16",
+    "description": "LINE_SCORES, clearLines, level, dropInterval, updateHUD"
+  },
+  {
+    "name": "area:controls",
+    "color": "fbca04",
+    "description": "handler de keydown, togglePause, hardDrop, softDrop"
+  },
+  {
+    "name": "area:ui",
+    "color": "e99695",
+    "description": "index.html, style.css, overlay, HUD, boton de reinicio"
+  },
+  {
+    "name": "area:build-ci",
+    "color": "bfd4f2",
+    "description": "Workflows de GitHub Actions, CLAUDE.md, README"
+  },
+
+  {
+    "name": "prio:alta",
+    "color": "b60205",
+    "description": "Rompe el juego o bloquea el trabajo"
+  },
+  {
+    "name": "prio:media",
+    "color": "fef2c0",
+    "description": "Molesta pero tiene workaround"
+  },
+  {
+    "name": "prio:baja",
+    "color": "c2e0c6",
+    "description": "Cosmetico o de bajo impacto"
+  },
+
+  {
+    "name": "needs-info",
+    "color": "ededed",
+    "description": "Faltan pasos de reproduccion o contexto para diagnosticar"
+  }
+]
